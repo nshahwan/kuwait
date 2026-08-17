@@ -1,0 +1,13 @@
+{
+  "sites": {
+    "kuwait": {
+      "previewOrg": "nshahwan",
+      "previewSite": "kuwait",
+      "contentHostUrl": "author-p208666-e2179906.adobeaemcloud.com",
+      "aemSitePath": "/content/kuwait",
+      "aemAssetsFolderPath": "/content/dam/kuwait",
+      "aemSiteName": "kuwait",
+      "aemSiteTitle": "kuwait"
+    }
+  }
+}
