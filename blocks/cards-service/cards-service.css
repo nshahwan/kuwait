@@ -150,9 +150,13 @@
 .cards-service > ul > li .cards-service-card-body h2,
 .cards-service > ul > li .cards-service-card-body h3 {
   margin: 0;
-  font-size: 20px;
-  line-height: 1.3;
-  font-weight: 700;
+  font-size: 34px;
+  line-height: 1.25;
+  font-weight: 900;
+  /* "Adobe Clean Bold" is a single-weight face, so font-weight can't push it
+     heavier — a text-stroke in the text colour thickens the glyphs for a
+     genuinely bolder look. */
+  -webkit-text-stroke: 0.7px currentcolor;
   text-shadow: 0 1px 4px rgb(0 0 0 / 45%);
   transition: transform 0.3s ease;
 }
@@ -473,9 +477,10 @@
   .cards-service-container .cards-service-wrapper .cards-service > ul > li .cards-service-card-body h4, 
   .cards-service-container .cards-service-wrapper .cards-service > ul > li .cards-service-card-body h5, 
   .cards-service-container .cards-service-wrapper .cards-service > ul > li .cards-service-card-body h6 {
-    margin: 0; 
+    margin: 0;
     padding: 0;
-    font-size: 20px;
+    font-size: 28px;
+    font-weight: 900;
   }
   .cards-service > ul > li.teaser-overlay .cards-service-card-body{
     width:100%;
