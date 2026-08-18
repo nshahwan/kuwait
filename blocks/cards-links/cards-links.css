@@ -458,3 +458,32 @@
   }
   
 }
+
+/* ============================================================
+   Editable section title ("الروابط المهمة") + purple underline.
+
+   The title is authored as a normal heading (default content) placed
+   above the boxes, so it stays fully editable. These rules only target
+   headings in the section's default-content wrapper — the block's own
+   card headings live under .cards-links-card-body and are untouched.
+   ============================================================ */
+.cards-links-container .default-content-wrapper :is(h1, h2, h3) {
+  margin: 0 0 40px;
+  text-align: center;
+  color: var(--text-light, #fff);
+  font-family: var(--black-font-family, 'Adobe Clean Black', sans-serif);
+  font-weight: 900;
+  font-size: 34px;
+  line-height: 1.2;
+}
+
+.cards-links-container .default-content-wrapper :is(h1, h2, h3)::after {
+  content: "";
+  display: block;
+  width: min(360px, 60%);
+  height: 4px;
+  margin: 14px auto 0;
+  border-radius: 4px;
+  /* purple gradient underline, matching the section-title reference */
+  background: linear-gradient(90deg, #4c1d95 0%, #7c3aed 55%, #c4b5fd 100%);
+}

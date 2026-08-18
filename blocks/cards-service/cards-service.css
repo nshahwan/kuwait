@@ -150,8 +150,8 @@
 .cards-service > ul > li .cards-service-card-body h2,
 .cards-service > ul > li .cards-service-card-body h3 {
   margin: 0;
-  font-size: 44px;
-  line-height: 1.25;
+  font-size: 64px;
+  line-height: 1.2;
   font-weight: 900;
   /* "Adobe Clean Bold" is a single-weight face, so font-weight can't push it
      heavier — a text-stroke in the text colour thickens the glyphs for a
@@ -167,6 +167,18 @@
 }
 .cards-service > ul > li .cards-service-card-body a {
   text-decoration: none;
+}
+
+/* The label text sits inside an <a> nested in the heading; without this the
+   anchor keeps the global 16px link size and the heading's font-size has no
+   visible effect. Inherit size/weight/stroke so the label scales with the
+   heading. */
+.cards-service > ul > li .cards-service-card-body h1 a,
+.cards-service > ul > li .cards-service-card-body h2 a,
+.cards-service > ul > li .cards-service-card-body h3 a {
+  font: inherit;
+  color: inherit;
+  -webkit-text-stroke: inherit;
 }
 .cards-service > ul > li .cards-service-card-body p {
   margin: 8px 0 0;
@@ -479,7 +491,7 @@
   .cards-service-container .cards-service-wrapper .cards-service > ul > li .cards-service-card-body h6 {
     margin: 0;
     padding: 0;
-    font-size: 44px;
+    font-size: 64px;
     font-weight: 900;
   }
   .cards-service > ul > li.teaser-overlay .cards-service-card-body{
