@@ -150,7 +150,7 @@
 .cards-service > ul > li .cards-service-card-body h2,
 .cards-service > ul > li .cards-service-card-body h3 {
   margin: 0;
-  font-size: 34px;
+  font-size: 44px;
   line-height: 1.25;
   font-weight: 900;
   /* "Adobe Clean Bold" is a single-weight face, so font-weight can't push it
@@ -479,7 +479,7 @@
   .cards-service-container .cards-service-wrapper .cards-service > ul > li .cards-service-card-body h6 {
     margin: 0;
     padding: 0;
-    font-size: 28px;
+    font-size: 44px;
     font-weight: 900;
   }
   .cards-service > ul > li.teaser-overlay .cards-service-card-body{
