@@ -487,3 +487,47 @@
   /* purple gradient underline, matching the section-title reference */
   background: linear-gradient(90deg, #4c1d95 0%, #7c3aed 55%, #c4b5fd 100%);
 }
+
+
+/* ============================================================
+   Bottom "important links" boxes — light blue-grey rounded panels
+   with centred text, matching the section reference.
+   Overrides the generic default-variant box styles above.
+   ============================================================ */
+.cards-links > ul > li {
+  background: #c5ccd9;
+  border: 0;
+  border-radius: 18px;
+  overflow: hidden;
+  min-height: 96px;
+  transition: background 0.25s ease;
+}
+
+.cards-links > ul > li:hover {
+  background: #d5dbe6;
+}
+
+.cards-links > ul > li .cards-links-card-body {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: transparent;
+  margin: 0;
+  padding: 18px 24px;
+}
+
+.cards-links > ul > li .cards-links-card-body p.button-container {
+  margin: 0;
+}
+
+.cards-links > ul > li .cards-links-card-body a:any-link,
+.cards-links > ul > li .cards-links-card-body a.button:any-link {
+  color: #2a3444;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.35;
+  text-align: center;
+  text-decoration: none;
+}
