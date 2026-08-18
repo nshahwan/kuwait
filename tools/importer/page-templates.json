@@ -1,0 +1,66 @@
+{
+  "metadata": {
+    "projectType": "xwalk"
+  },
+  "templates": [
+    {
+      "name": "MOC Kuwait Arabic Homepage",
+      "urls": [
+        "https://moc.gov.kw/ar"
+      ],
+      "description": "RTL (dir=rtl, lang=ar) Ministry of Communications Kuwait Arabic homepage. Main content: a full-bleed skyline hero with an overlaid 'الأخبار' news label card, a ~40-item news list, a 4-tile e-services grid (الخدمات الإلكترونية), and a 6-button important-links row (الروابط المهمة). Header/nav and footer are migrated separately.",
+      "sections": [
+        {
+          "id": "section-hero",
+          "name": "Hero — Kuwait skyline with News label card",
+          "selector": "#high-impact-hero",
+          "style": null,
+          "blocks": ["hero-skyline"],
+          "defaultContent": []
+        },
+        {
+          "id": "section-news",
+          "name": "News list (الأخبار)",
+          "selector": ".swiper-wrapper",
+          "style": null,
+          "blocks": ["cards-news"],
+          "defaultContent": []
+        },
+        {
+          "id": "section-eservices",
+          "name": "E-Services grid (الخدمات الإلكترونية)",
+          "selector": ".grid.grid-cols-2",
+          "style": null,
+          "blocks": ["cards-service"],
+          "defaultContent": ["h2:has(> span)"]
+        },
+        {
+          "id": "section-important-links",
+          "name": "Important links (الروابط المهمة)",
+          "selector": ".flex.flex-row.items-center.justify-center.gap-4.container",
+          "style": null,
+          "blocks": ["cards-links"],
+          "defaultContent": ["h2:has(> span)"]
+        }
+      ],
+      "blocks": [
+        {
+          "name": "hero-skyline",
+          "instances": ["#high-impact-hero"]
+        },
+        {
+          "name": "cards-news",
+          "instances": [".swiper-wrapper"]
+        },
+        {
+          "name": "cards-service",
+          "instances": [".grid.grid-cols-2"]
+        },
+        {
+          "name": "cards-links",
+          "instances": [".flex.flex-row.items-center.justify-center.gap-4.container"]
+        }
+      ]
+    }
+  ]
+}
