@@ -1,0 +1,38 @@
+{
+  "variantName": "cards-links",
+  "baseBlock": "cards",
+  "version": "1.0.0",
+  "created": "2026-08-17T12:50:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://moc.gov.kw/ar",
+    "originPage": "MOC Kuwait Arabic homepage",
+    "blockPosition": "bottom"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "wide",
+    "purpose": "links",
+    "imagePattern": "noimg"
+  },
+  "contentPattern": {
+    "structure": "repeating text link rendered as a rounded button tile, no image",
+    "buttonCount": 1,
+    "imageCount": 0
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "quick-link / important-links button rows",
+      "no-image link groups rendered as elevated pill buttons",
+      "RTL Arabic link tile sections"
+    ],
+    "notSuitableFor": [
+      "cards with images",
+      "editorial lists needing dates or descriptions"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/ar"],
+    "reuseCount": 1,
+    "lastUsed": "2026-08-17T12:50:00.000Z"
+  }
+}

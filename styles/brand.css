@@ -1,0 +1,30 @@
+/*
+ * MOC Kuwait — brand design tokens
+ * Extracted from https://moc.gov.kw/ar (RTL Arabic government portal).
+ * Deep-blue → purple gradient chrome, main-blue body text, white content
+ * cards on a soft page background.
+ */
+:root {
+  /* Brand palette */
+  --brand-background-color: #eef1f7;
+  --brand-text-color: #243a61;
+  --brand-link-color: #243a61;
+  --brand-link-hover-color: #6d4faf;
+  --brand-theme-color: #6d4faf;
+
+  /* MOC specific */
+  --moc-main-blue: #243a61;
+  --moc-purple: #6d4faf;
+  --moc-blue-deep: #243a61;
+  --moc-secondary: #60a5fa;
+
+  /* Header / footer chrome — the purple→blue gradient bar */
+  --brand-nav-background-color: #3a3170;
+  --brand-nav-text-color: #fff;
+  --brand-footer-background-color: #000;
+  --brand-footer-text-color: #fff;
+
+  /* Fonts (Arabic first; loaded via head.html Google Fonts) */
+  --brand-body-font-family: tajawal, cairo, 'Adobe Clean', sans-serif;
+  --brand-heading-font-family: cairo, tajawal, 'Adobe Clean Bold', sans-serif;
+}

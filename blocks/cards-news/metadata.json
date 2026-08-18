@@ -1,0 +1,38 @@
+{
+  "variantName": "cards-news",
+  "baseBlock": "cards",
+  "version": "1.0.0",
+  "created": "2026-08-17T12:50:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://moc.gov.kw/ar",
+    "originPage": "MOC Kuwait Arabic homepage",
+    "blockPosition": "top"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "compact",
+    "purpose": "news",
+    "imagePattern": "noimg"
+  },
+  "contentPattern": {
+    "structure": "repeating headline link + date, no image",
+    "buttonCount": 0,
+    "imageCount": 0
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "news/announcement index lists",
+      "editorial link lists with a headline and a date",
+      "RTL Arabic scannable list sections without images"
+    ],
+    "notSuitableFor": [
+      "image tile grids",
+      "cards that need a description body or CTA button"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/ar"],
+    "reuseCount": 1,
+    "lastUsed": "2026-08-17T12:50:00.000Z"
+  }
+}

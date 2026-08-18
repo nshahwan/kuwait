@@ -1,0 +1,710 @@
+/* stylelint-disable no-descending-specificity */
+
+/* --------------------------
+   Base Hero Layout
+--------------------------- */
+.hero-skyline-container .hero-skyline-wrapper {
+  max-width: unset;
+  padding: 0;
+}
+
+.hero-skyline {
+  position: relative;
+  padding: 40px 24px;
+  min-height: 700px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* Ensure all direct child divs stay within the hero bounds */
+.hero-skyline > div {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* --------------------------
+   Headings & Paragraphs
+--------------------------- */
+.hero-skyline h1,
+.hero-skyline h2,
+.hero-skyline h3,
+.hero-skyline h4,
+.hero-skyline h5,
+.hero-skyline h6,
+.hero-skyline p {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  color: var(--text-light);
+  text-align: center;
+  font-family: var(--black-font-family);
+}
+
+/* Special underline (only for h1 by default) */
+.hero-skyline h1::after {
+  background-color: var(--main-accent-color);
+  content: "";
+  display: block;
+  height: 5px;
+  margin: 20px auto 30px;
+  width: 128px;
+  transition: width .4s ease-in-out;
+}
+
+/* Left-aligned layouts: the title underline hugs the left like the title. */
+.hero-skyline.image-left h1::after,
+.hero-skyline.image-right h1::after,
+.hero-skyline.image-background-text-left h1::after,
+.hero-skyline.image-background-text-right h1::after {
+  margin-left: 0;
+}
+
+/* Remove underline when class applied */
+.hero-skyline.removeunderline h1::after,
+.hero-skyline.removeunderline h2::after,
+.hero-skyline.removeunderline h3::after,
+.hero-skyline.removeunderline h4::after,
+.hero-skyline.removeunderline h5::after,
+.hero-skyline.removeunderline h6::after {
+  display: none;
+}
+
+/* --------------------------
+   Hero Background Image
+--------------------------- */
+.hero-skyline picture {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  box-sizing: border-box;
+}
+
+.hero-skyline img {
+  object-fit: cover;
+  object-position: left;
+  width: 100%;
+  height: 100%;
+}
+
+/* --------------------------
+   Hero Background Video
+--------------------------- */
+video.hero-skyline-video-bg {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+/* For side-by-side layouts the video sits in-flow */
+.hero-skyline.image-left video.hero-skyline-video-bg,
+.hero-skyline.image-right video.hero-skyline-video-bg,
+.hero-skyline.image-top video.hero-skyline-video-bg,
+.hero-skyline.image-bottom video.hero-skyline-video-bg {
+  position: relative;
+  inset: auto;
+  min-height: 400px;
+}
+
+/* Ensure the asset slot div sizes correctly when holding video */
+.hero-skyline.hero-skyline-video.image-left > div:first-child,
+.hero-skyline.hero-skyline-video.image-right > div:first-child {
+  flex: 0 0 50%;
+  overflow: hidden;
+}
+
+.hero-skyline.hero-skyline-video.image-top > div:first-child,
+.hero-skyline.hero-skyline-video.image-bottom > div:first-child {
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+}
+
+/* --------------------------
+   Buttons
+--------------------------- */
+
+
+/* Primary CTA */
+.hero-skyline-wrapper .button-container.cta-button a.button {
+  background-color: var(--main-accent-color);
+  border: 2px solid var(--main-accent-color);
+}
+
+.hero-skyline-wrapper .button-container.cta-button a.button::after {
+  content: "\f105";
+  /* stylelint-disable-next-line font-family-no-missing-generic-family-keyword */
+  font-family: 'Font Awesome 5 Solid';
+  font-size: 20px;
+  margin-left: 8px;
+  transition: all 0.3s ease;
+  color: var(--text-light);
+}
+
+.hero-skyline-wrapper .button-container.cta-button a.button:hover {
+  background-color: rgb(255 255 255 / 10%) !important;
+  color: var(--text-light) !important;
+  border-color: var(--text-light) !important;
+  box-shadow: 0 4px 8px rgb(0 0 0 / 30%) !important;
+  transform: translateY(-1px);
+}
+
+.hero-skyline-wrapper .button-container.cta-button a.button:hover::after {
+  color: var(--text-light) !important;
+  transform: translateX(2px);
+}
+
+/* Secondary CTA */
+.hero-skyline-wrapper .button-container.cta-button-secondary a.button {
+  background: transparent;
+  border: 2px solid var(--main-accent-color);
+  color: var(--text-light);
+}
+
+.hero-skyline-wrapper .button-container.cta-button-secondary a.button::after {
+  content: "\f105";
+  /* stylelint-disable-next-line font-family-no-missing-generic-family-keyword */
+  font-family: 'Font Awesome 5 Solid';
+  font-size: 20px;
+  margin-left: 8px;
+  transition: all 0.3s ease;
+  color: var(--text-light);
+}
+
+.hero-skyline-wrapper .button-container.cta-button-secondary a.button:hover {
+  background-color: var(--main-accent-color);
+  color: var(--text-light);
+}
+
+.hero-skyline-wrapper .button-container.cta-button-secondary a.button:hover::after {
+  color: var(--text-dark);
+  transform: translateX(2px);
+}
+
+/* Accessibility */
+.hero-skyline-wrapper .button-container a.button:focus {
+  outline: 2px solid var(--main-accent-color);
+  outline-offset: 2px;
+}
+
+/* Minimal variation */
+.hero-skyline .button-container.cta-minimal a.button::after {
+  margin-left: 4px;
+}
+
+/* --------------------------
+   Layout Variations
+--------------------------- */
+.hero-skyline.image-left,
+.hero-skyline.image-right,
+.hero-skyline.image-top,
+.hero-skyline.image-bottom {
+  gap: 40px;
+  padding: 0;
+  min-height: auto;
+  box-shadow: 0 4px 20px rgb(0 0 0 / 15%);
+  overflow: hidden;
+}
+
+
+.hero-skyline.image-left {
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.hero-skyline.image-right {
+  flex-direction: row-reverse;
+  justify-content: flex-start;
+}
+
+.hero-skyline.image-top {
+  flex-direction: column;
+}
+
+.hero-skyline.image-bottom {
+  flex-direction: column-reverse;
+}
+
+/* Image Background Text Left - Text overlaid on background image, left-aligned */
+.hero-skyline.image-background-text-left {
+  justify-content: flex-start;
+  align-items: center;
+  text-align: left;
+  padding: 60px 40px;
+}
+
+.hero-skyline.image-background-text-left > div {
+  text-align: left;
+  max-width: min(600px, 100%);
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* Image Background Text Right - Text overlaid on background image, right-aligned */
+.hero-skyline.image-background-text-right {
+  justify-content: flex-end;
+  align-items: center;
+  text-align: left;
+  padding: 60px 40px;
+}
+
+.hero-skyline.image-background-text-right > div {
+  text-align: left;
+  max-width: min(600px, 100%);
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.hero-skyline.image-left picture,
+.hero-skyline.image-right picture,
+.hero-skyline.image-top picture,
+.hero-skyline.image-bottom picture {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-skyline.image-left > div:first-child picture,
+.hero-skyline.image-right > div:first-child picture {
+  height: 100%;
+  width: 100%;
+}
+
+.hero-skyline.image-top picture,
+.hero-skyline.image-bottom picture {
+  width: 100%;
+  height: 400px;
+}
+
+/* Text align adjustments */
+.hero-skyline.image-left > div:first-child,
+.hero-skyline.image-right > div:first-child {
+  flex: 0 0 50%;
+}
+
+.hero-skyline.image-left > div:nth-child(2),
+.hero-skyline.image-right > div:nth-child(2) {
+  flex: 0 0 50%;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 40px;
+  box-sizing: border-box;
+}
+
+.hero-skyline.image-right > div:nth-child(2) {
+  padding-left: 80px;
+}
+
+picture {
+    line-height: 0;
+}
+
+
+.hero-skyline.image-left h2,
+.hero-skyline.image-left h3,
+.hero-skyline.image-left h4,
+.hero-skyline.image-left h5,
+.hero-skyline.image-left h6,
+.hero-skyline.image-left p,
+.hero-skyline.image-right h2,
+.hero-skyline.image-right h3,
+.hero-skyline.image-right h4,
+.hero-skyline.image-right h5,
+.hero-skyline.image-right h6,
+.hero-skyline.image-right p {
+  text-align: left;
+  margin: 0;
+  width: 100%;
+  max-width: none;
+  color: var(--text-color);
+    text-shadow: unset;
+}
+
+.hero-skyline.image-left h1,.hero-skyline.image-right h1{
+  color: var(--text-color);
+  text-shadow: unset;
+  text-align: left;
+  margin: 0;
+  width: 100%;
+  max-width: none;
+}
+
+.hero-skyline.image-background-text-left h1,
+.hero-skyline.image-background-text-left h2,
+.hero-skyline.image-background-text-left h3,
+.hero-skyline.image-background-text-left h4,
+.hero-skyline.image-background-text-left h5,
+.hero-skyline.image-background-text-left h6,
+.hero-skyline.image-background-text-left p {
+  text-align: left;
+  margin: 0 0 20px;
+  width: 100%;
+  max-width: none;
+  color: var(--text-light);
+}
+
+.hero-skyline.image-background-text-left .button-container {
+  text-align: left;
+  margin-top: 30px;
+}
+
+.hero-skyline.image-background-text-right h1,
+.hero-skyline.image-background-text-right h2,
+.hero-skyline.image-background-text-right h3,
+.hero-skyline.image-background-text-right h4,
+.hero-skyline.image-background-text-right h5,
+.hero-skyline.image-background-text-right h6,
+.hero-skyline.image-background-text-right p {
+  text-align: left;
+  margin: 0 0 20px;
+  width: 100%;
+  max-width: none;
+  color: var(--text-light);
+}
+
+.hero-skyline.image-background-text-right .button-container {
+  text-align: left;
+  margin-top: 30px;
+}
+
+.hero-skyline.image-top h1,
+.hero-skyline.image-top h2,
+.hero-skyline.image-top h3,
+.hero-skyline.image-top h4,
+.hero-skyline.image-top h5,
+.hero-skyline.image-top h6,
+.hero-skyline.image-top p,
+.hero-skyline.image-bottom h1,
+.hero-skyline.image-bottom h2,
+.hero-skyline.image-bottom h3,
+.hero-skyline.image-bottom h4,
+.hero-skyline.image-bottom h5,
+.hero-skyline.image-bottom h6,
+.hero-skyline.image-bottom p{
+  text-align: center;
+  max-width: none;
+  color: var(--text-color);
+    text-shadow: unset;
+}
+
+/* --------------------------
+   Responsive
+--------------------------- */
+@media (width >= 900px) {
+  .hero-skyline { padding: 40px 32px; }
+
+  .hero-skyline-wrapper a.button {
+    padding: 14px 28px;
+    font-size: 18px;
+  }
+}
+
+@media (width < 1024px) {
+  .hero-skyline { min-height: 650px; }
+
+  .hero-skyline.image-background-text-left {
+    padding: 50px 30px;
+  }
+
+  .hero-skyline.image-background-text-right {
+    padding: 50px 30px;
+  }
+
+  .hero-skyline.image-background-text-left > div,
+  .hero-skyline.image-background-text-right > div {
+    max-width: min(600px, calc(100% - 20px));
+  }
+}
+
+@media (width < 768px) {
+  .hero-skyline { min-height: 600px; }
+
+  .hero-skyline.image-left,
+  .hero-skyline.image-right {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .hero-skyline.image-left picture,
+  .hero-skyline.image-right picture {
+    width: 100%;
+    height: 300px;
+    flex: none;
+  }
+
+  .hero-skyline.hero-skyline-video.image-left video.hero-skyline-video-bg,
+  .hero-skyline.hero-skyline-video.image-right video.hero-skyline-video-bg {
+    min-height: 300px;
+    height: 300px;
+  }
+
+  .hero-skyline.image-left > div:last-child,
+  .hero-skyline.image-right > div:last-child {
+    text-align: center;
+  }
+
+  .hero-skyline.image-left h2,
+  .hero-skyline.image-left h3,
+  .hero-skyline.image-left h4,
+  .hero-skyline.image-left h5,
+  .hero-skyline.image-left h6,
+  .hero-skyline.image-left p,
+  .hero-skyline.image-right h2,
+  .hero-skyline.image-right h3,
+  .hero-skyline.image-right h4,
+  .hero-skyline.image-right h5,
+  .hero-skyline.image-right h6,
+  .hero-skyline.image-right p {
+    text-align: center;
+    margin: 0 auto;
+  }
+
+  .hero-skyline.image-top picture,
+  .hero-skyline.image-bottom picture {
+    height: 250px;
+  }
+
+  .hero-skyline.hero-skyline-video.image-top > div:first-child,
+  .hero-skyline.hero-skyline-video.image-bottom > div:first-child {
+    height: 250px;
+  }
+
+  .hero-skyline.hero-skyline-video.image-top video.hero-skyline-video-bg,
+  .hero-skyline.hero-skyline-video.image-bottom video.hero-skyline-video-bg {
+    min-height: 250px;
+  }
+  
+  /* Mobile adjustments for image-background-text-left */
+  .hero-skyline.image-background-text-left {
+    padding: 40px 16px;
+    text-align: center;
+  }
+
+  .hero-skyline.image-background-text-left > div {
+    max-width: 100%;
+  }
+
+  .hero-skyline.image-background-text-left h1,
+  .hero-skyline.image-background-text-left h2,
+  .hero-skyline.image-background-text-left h3,
+  .hero-skyline.image-background-text-left h4,
+  .hero-skyline.image-background-text-left h5,
+  .hero-skyline.image-background-text-left h6,
+  .hero-skyline.image-background-text-left p {
+    text-align: center;
+  }
+
+  .hero-skyline.image-background-text-left .button-container {
+    text-align: center;
+  }
+
+  /* Mobile adjustments for image-background-text-right */
+  .hero-skyline.image-background-text-right {
+    padding: 40px 16px;
+    text-align: center;
+  }
+
+  .hero-skyline.image-background-text-right > div {
+    max-width: 100%;
+  }
+
+  .hero-skyline.image-background-text-right h1,
+  .hero-skyline.image-background-text-right h2,
+  .hero-skyline.image-background-text-right h3,
+  .hero-skyline.image-background-text-right h4,
+  .hero-skyline.image-background-text-right h5,
+  .hero-skyline.image-background-text-right h6,
+  .hero-skyline.image-background-text-right p,
+  .hero-skyline.image-background-text-right .button-container {
+    text-align: center;
+  }
+
+  .hero-skyline.image-background-text-right .button-container {
+    text-align: center;
+  }
+
+  /* Default overlay — constrain text on mobile */
+  .hero-skyline.block.overlay .hero-skyline-text {
+    max-width: calc(100% - 32px);
+    padding: 16px;
+  }
+
+  /* Side-by-side layouts — text panel goes full width on mobile */
+  .hero-skyline.image-left > div:nth-child(2),
+  .hero-skyline.image-right > div:nth-child(2) {
+    flex: 1 1 auto;
+    padding: 24px 16px;
+  }
+}
+
+@media (width < 480px) {
+  .hero-skyline {
+    min-height: 400px;
+    padding: 24px 12px;
+  }
+
+  .hero-skyline.image-background-text-left,
+  .hero-skyline.image-background-text-right {
+    padding: 24px 12px;
+  }
+
+  .hero-skyline h1 { font-size: 1.6rem; }
+  .hero-skyline h2 { font-size: 1.3rem; }
+}
+
+/* --------------------------
+   Background Style Variations
+--------------------------- */
+
+/* Theme Dark Background Style — applies to the text box only, never the asset */
+.hero-skyline.theme-dark .hero-skyline-text {
+  background: var(--dark-color);
+}
+
+.hero-skyline.theme-dark h1,
+.hero-skyline.theme-dark h2,
+.hero-skyline.theme-dark h3,
+.hero-skyline.theme-dark h4,
+.hero-skyline.theme-dark h5,
+.hero-skyline.theme-dark h6,
+.hero-skyline.theme-dark p {
+  color: var(--light-color);
+}
+
+.hero-skyline.theme-dark .button-container a.button {
+  color: var(--light-color);
+  border-color: var(--light-color);
+}
+
+/* Theme Light Background Style — applies to the text box only, never the asset */
+.hero-skyline.theme-light .hero-skyline-text {
+  background: var(--light-color);
+}
+
+.hero-skyline.theme-light h1,
+.hero-skyline.theme-light h2,
+.hero-skyline.theme-light h3,
+.hero-skyline.theme-light h4,
+.hero-skyline.theme-light h5,
+.hero-skyline.theme-light h6,
+.hero-skyline.theme-light p {
+  color: var(--dark-color);
+}
+
+.hero-skyline.theme-light .button-container a.button {
+  color: var(--dark-color);
+  border-color: var(--dark-color);
+}
+
+/* Overlay text box — targets .hero-skyline-text class set by JS, so it is always
+   the correct div regardless of whether a <video> was prepended */
+.hero-skyline.block.overlay .hero-skyline-text,
+.hero-skyline.image-background-text-left .hero-skyline-text,
+.hero-skyline.image-background-text-right .hero-skyline-text {
+  padding: 20px;
+  box-sizing: border-box;
+  max-width: 100%;
+  overflow-wrap: break-word;
+}
+
+/* Default semi-transparent backdrop for the text box — only when no Text
+   Background Style is chosen, so Theme Dark/Light can take over the box bg. */
+.hero-skyline.block.overlay:not(.theme-dark, .theme-light) .hero-skyline-text,
+.hero-skyline.image-background-text-left:not(.theme-dark, .theme-light) .hero-skyline-text,
+.hero-skyline.image-background-text-right:not(.theme-dark, .theme-light) .hero-skyline-text {
+  background: rgb(0 0 0 / 50%);
+}
+
+/* button theme hero specific */
+.hero-skyline.block.overlay .button-container.cta-link a.button,.hero-skyline.image-background-text-left .button-container.cta-link a.button,.hero-skyline.image-background-text-right .button-container.cta-link a.button {
+  color: var(--text-light);
+}
+
+.hero-skyline.block.overlay .button-container.cta-link a.button::after  ,.hero-skyline.image-background-text-left .button-container.cta-link a.button::after,.hero-skyline.image-background-text-right .button-container.cta-link a.button::after  {
+  color: var(--text-light);
+}
+
+/* --------------------------
+   Badge / Highlight pill
+--------------------------- */
+.hero-skyline .hero-skyline-badge {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+
+  /* Centered by default so it matches the centered title in the overlay,
+     asset-top and asset-bottom layouts. Auto side margins center a
+     fit-content block; the left-aligned layouts override this below. */
+  margin: 0 auto 12px;
+  padding: 7px 18px;
+  border-radius: 100px;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: var(--text-light);
+  background: rgb(255 255 255 / 20%);
+  backdrop-filter: blur(4px);
+}
+
+/* Left-aligned layouts: the badge hugs the left edge like the title/text. */
+.hero-skyline.image-left .hero-skyline-badge,
+.hero-skyline.image-right .hero-skyline-badge,
+.hero-skyline.image-background-text-left .hero-skyline-badge,
+.hero-skyline.image-background-text-right .hero-skyline-badge {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+/* Light text-panel layouts (dark title): badge uses dark text + a faint
+   dark chip to stay legible. */
+.hero-skyline.image-left .hero-skyline-badge,
+.hero-skyline.image-right .hero-skyline-badge,
+.hero-skyline.image-top .hero-skyline-badge,
+.hero-skyline.image-bottom .hero-skyline-badge {
+  color: var(--text-color);
+  background: rgb(0 0 0 / 8%);
+}
+
+/* ==========================================================================
+   MOC Kuwait — skyline hero overrides
+   The source hero is a full-bleed Kuwait City skyline behind an overlaid
+   "الأخبار" news label card. The skyline was a background video/image removed
+   during cleanup, so paint it as the block background here. Scoped under the
+   block container to avoid duplicating the base .hero-skyline selector.
+   ========================================================================== */
+.hero-skyline-container .hero-skyline.block {
+  min-height: 460px;
+  background-image:
+    linear-gradient(180deg, rgb(36 58 97 / 15%) 0%, rgb(36 58 97 / 45%) 100%),
+    url('/content/moc-skyline.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  align-items: flex-end;
+  justify-content: flex-start;
+}
+
+/* News label card — the "الأخبار" badge overlaid bottom-start on the skyline */
+.hero-skyline-container .hero-skyline.block .hero-skyline-badge {
+  background: var(--moc-main-blue, #243a61);
+  color: var(--text-light, #fff);
+  font-family: var(--arabic-heading-font-family);
+  font-weight: 700;
+  font-size: 14px;
+  border-radius: 8px 8px 0 0;
+  padding: 6px 16px;
+  margin: 0;
+}
+
+@media (width >= 900px) {
+  .hero-skyline-container .hero-skyline.block {
+    min-height: 520px;
+  }
+}

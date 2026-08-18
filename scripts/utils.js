@@ -1,69 +1,65 @@
-import {
-  div, p, section, a, button,
-  span,
-} from './dom-helpers.js';
+import { fetchPlaceholders } from './aem.js';
+// eslint-disable-next-line import/no-cycle
+import { isAuthorEnvironment } from './scripts.js';
 
 export const PATH_PREFIX = '/language-masters';
 export const TAG_ROOT = 'wknd-universal:';
-//export const SITE_NAME = 'wknd-universal';
+// export const SITE_NAME = 'wknd-universal';
 export const SUPPORTED_LANGUAGES = [
-  'en',    // English
-  'fr',    // French
-  'de',    // German
-  'es',    // Spanish
-  'it',    // Italian
-  'pt',    // Portuguese
-  'nl',    // Dutch
-  'sv',    // Swedish
-  'da',    // Danish
-  'ru',    // Russian
-  'ja',    // Japanese
-  'zh',    // Chinese (Simplified)
+  'en', // English
+  'fr', // French
+  'de', // German
+  'es', // Spanish
+  'it', // Italian
+  'pt', // Portuguese
+  'nl', // Dutch
+  'sv', // Swedish
+  'da', // Danish
+  'ru', // Russian
+  'ja', // Japanese
+  'zh', // Chinese (Simplified)
   'zh_TW', // Chinese (Traditional)
-  'ko',    // Korean
-  'ar',    // Arabic
-  'he',    // Hebrew
+  'ko', // Korean
+  'ar', // Arabic
+  'he', // Hebrew
 ];
 export const INTERNAL_PAGES = ['/footer', '/nav', '/fragments', '/data', '/drafts'];
 
 let lang;
-import { fetchPlaceholders } from './aem.js';
-import { isAuthorEnvironment } from './scripts.js';
 
 /**
  * Extracts the site name from the current URL pathname
  * @description Extracts the site name from paths following the pattern /content/site-name/...
  * For example:
  * - From "/content/wknd-universal/language-masters/en/path" returns "wknd-universal"
- * - From "/content/wknd-universal/language-masters/en/path/to/content.html" returns "wknd-universal"
+ * - From ".../language-masters/en/path/to/content.html" returns "wknd-universal"
  * @returns {string} The site name extracted from the path, or empty string if not found
  */
-  export async function getSiteName() {
-    try {
-      if(isAuthorEnvironment()){
-          // Fallback to extracting from pathname
-          const { pathname } = window.location;
-          const siteNameFromPath = pathname.split('/content/')[1]?.split('/')[0] || '';
-          return siteNameFromPath;
-      } else {
-        const listOfAllPlaceholdersData = await fetchPlaceholders();
-        const siteName = listOfAllPlaceholdersData?.siteName;
-        if (siteName) {
-          return siteName.replaceAll('/content/', '');
-        }
-      }
-    } catch (error) {
-      console.warn('Error fetching placeholders for siteName:', error);
+export async function getSiteName() {
+  try {
+    if (isAuthorEnvironment()) {
+      // Fallback to extracting from pathname
+      const { pathname } = window.location;
+      const siteNameFromPath = pathname.split('/content/')[1]?.split('/')[0] || '';
+      return siteNameFromPath;
     }
+    const listOfAllPlaceholdersData = await fetchPlaceholders();
+    const siteName = listOfAllPlaceholdersData?.siteName;
+    if (siteName) {
+      return siteName.replaceAll('/content/', '');
+    }
+  } catch (error) {
+    console.warn('Error fetching placeholders for siteName:', error);
+  }
+  return '';
 }
-
 
 /**
  * Extracts the site name from the current URL pathname
  * @description Extracts the site name from paths following the pattern /content/site-name/...
  * For example:
  * - From "/content/wknd-universal/language-masters/en/path" returns "wknd-universal"
- * - From "/content/wknd-universal/language-masters/en/path/to/content.html" returns "wknd-universal"
+ * - From ".../language-masters/en/path/to/content.html" returns "wknd-universal"
  * @returns {string} The site name extracted from the path, or empty string if not found
  */
 export async function getHostname() {
@@ -76,6 +72,7 @@ export async function getHostname() {
   } catch (error) {
     console.warn('Error fetching placeholders for hostname:', error);
   }
+  return '';
 }
 
 /**
@@ -102,8 +99,8 @@ export async function getDynamicMediaServerURL() {
   } catch (error) {
     console.warn('Error fetching placeholders for dmurl:', error);
   }
+  return '';
 }
-
 
 /**
  * Get Inherited Page Properties
@@ -119,15 +116,14 @@ export function getInheritedPageProperties() {
      /content/wknd-universal/language-masters/en/path/to/content.html
      2 is the index of the language in the path for EDS paths like /en/path/to/content
     */
-  
+
   let langCode = isContentPath ? safeLangGet(3) : safeLangGet(0);
 
-  
   // remove suffix from lang if any
   if (langCode.indexOf('.') > -1) {
     langCode = langCode.substring(0, langCode.indexOf('.'));
   }
-  
+
   if (!langCode) langCode = 'en'; // default to en
   // substring before lang
   const prefix = pathname.substring(0, pathname.indexOf(`/${langCode}`)) || '';
@@ -141,7 +137,6 @@ export function getInheritedPageProperties() {
     isContentPath,
   };
 }
-
 
 /**
  * Process current pathname and return details for use in language switching
@@ -181,17 +176,40 @@ export function getPathDetails() {
  */
 export function getLanguage() {
   if (!lang) {
-    lang = getPathDetails().langCode;
-    if (!SUPPORTED_LANGUAGES.includes(lang)) {
-      lang = 'en';
+    // Prefer an explicit supported-language token found anywhere in the path.
+    // Covers preview/content paths where the language isn't at the expected
+    // index (e.g. /content/ar) so RTL detection and fragment paths stay correct.
+    const parts = window.location.pathname.split('/').filter(Boolean);
+    const found = parts.find((part) => SUPPORTED_LANGUAGES.includes(part));
+    if (found) {
+      lang = found;
+    } else {
+      lang = getPathDetails().langCode;
+      if (!SUPPORTED_LANGUAGES.includes(lang)) {
+        lang = 'en';
+      }
     }
   }
   return lang;
 }
 
+/**
+ * Languages that are written right-to-left.
+ */
+export const RTL_LANGUAGES = ['ar', 'he'];
+
+/**
+ * @param {string} langCode language code (e.g. 'ar', 'en')
+ * @returns {boolean} true when the language is written right-to-left
+ */
+export function isRTL(langCode = getLanguage()) {
+  return RTL_LANGUAGES.includes(langCode);
+}
+
 export function setPageLanguage() {
   const currentLang = getLanguage();
   document.documentElement.lang = currentLang;
+  document.documentElement.dir = isRTL(currentLang) ? 'rtl' : 'ltr';
 }
 
 /**
@@ -201,7 +219,7 @@ export function setPageLanguage() {
 export function computeLocalizedUrl(targetLang) {
   try {
     if (!targetLang || typeof targetLang !== 'string') return window.location.href;
-    const { langCode, suffix, isContentPath } = getPathDetails();
+    const { suffix, isContentPath } = getPathDetails();
 
     const url = new URL(window.location.href);
     const query = url.search || '';
@@ -281,7 +299,6 @@ export function formatDate(dObjStr) {
   }
   return '';
 }
-
 
 /**
  * Remove prefix from tag
@@ -407,7 +424,6 @@ export async function mapAemPathToSitePath(aemPath) {
   }
 }
 
-
 export async function fetchData(url, method = 'GET', headers = {}, body = null) {
   try {
     const options = { method, headers: { ...headers } };
@@ -446,7 +462,6 @@ export function isInternalPage() {
   INTERNAL_PAGES.forEach((element) => { if (pageUrl.indexOf(element) > 0) return true; });
   return false;
 }
-
 
 /**
  * Get the query string value

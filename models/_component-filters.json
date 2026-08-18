@@ -13,6 +13,9 @@
       "button",
       "button",
       "cards",
+      "cards-news",
+      "cards-service",
+      "cards-links",
       "carousel",
       "columns",
       "contentfragment",
@@ -25,6 +28,7 @@
       "form",
       "fragment",
       "hero",
+      "hero-skyline",
       "image",
       "promotion",
       "quote",
@@ -40,6 +44,24 @@
   },
   {
     "id": "cards",
+    "components": [
+      "card"
+    ]
+  },
+  {
+    "id": "cards-news",
+    "components": [
+      "card"
+    ]
+  },
+  {
+    "id": "cards-service",
+    "components": [
+      "card"
+    ]
+  },
+  {
+    "id": "cards-links",
     "components": [
       "card"
     ]

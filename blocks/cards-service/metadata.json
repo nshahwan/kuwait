@@ -1,0 +1,38 @@
+{
+  "variantName": "cards-service",
+  "baseBlock": "cards",
+  "version": "1.0.0",
+  "created": "2026-08-17T12:50:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://moc.gov.kw/ar",
+    "originPage": "MOC Kuwait Arabic homepage",
+    "blockPosition": "middle"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "image",
+    "density": "wide",
+    "purpose": "feature",
+    "imagePattern": "large"
+  },
+  "contentPattern": {
+    "structure": "square image tile + overlaid centered label link",
+    "buttonCount": 0,
+    "imageCount": 1
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "e-services / quick-access tile grids",
+      "image tiles with a label overlaid on a dark scrim",
+      "linked feature tiles in a 4-across responsive grid"
+    ],
+    "notSuitableFor": [
+      "text-only card lists",
+      "cards needing a description body and separate CTA button"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/ar"],
+    "reuseCount": 1,
+    "lastUsed": "2026-08-17T12:50:00.000Z"
+  }
+}
