@@ -1,7 +1,7 @@
 # Reference Demo Framework (for AEM EDS)
 
 **Build your Own Demos for EDS**
-- Custom Themes (with and without code)
+- Custom Themes (with and without code).  fff....ssss
 - Dynamic Media Templates
 - Dynamic Media Open API & native Dynamic Media Blocks
 - Style-friendly blocks including (not an exhaustive list):
@@ -20,8 +20,8 @@
   - Template contains placeholder blocks with various styling options
 
 ## Environments
-- Preview: http://main--refdemoeds--aemxsc.aem.page/
-- Live: http://main--refdemoeds--aemxsc.aem.live/
+- Preview: http://main--kuwait--waringme.aem.page/
+- Live: http://main--kuwait--waringme.aem.live/
 
 ## Documentation
 [Ref Demo 2.0](https://adobe.com/go/refdemo) 
