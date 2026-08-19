@@ -533,3 +533,10 @@
   text-align: center;
   text-decoration: none;
 }
+
+/* Suppress the global chevron (a::after "\f105") on card links. */
+.cards-links a::after,
+.cards-links a.button::after {
+  content: none;
+  display: none;
+}

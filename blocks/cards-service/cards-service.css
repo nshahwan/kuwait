@@ -461,6 +461,13 @@
    padding: 14px 15px !important;
 }
 
+/* Suppress the global chevron (a::after "\f105") on service card links. */
+.cards-service a::after,
+.cards-service a.button::after {
+  content: none;
+  display: none;
+}
+
 
 /* Responsive Styles */
 @media (width < 1024px) {
