@@ -495,7 +495,9 @@
    Overrides the generic default-variant box styles above.
    ============================================================ */
 .cards-links > ul > li {
-  background: #c5ccd9;
+  /* Darker blue-grey at 78% opacity so the panel reads as a solid card while
+     letting the patterned blue background show through slightly. */
+  background: rgba(151, 163, 186, 0.78);
   border: 0;
   border-radius: 18px;
   overflow: hidden;
@@ -504,7 +506,7 @@
 }
 
 .cards-links > ul > li:hover {
-  background: #d5dbe6;
+  background: rgba(174, 185, 204, 0.88);
 }
 
 .cards-links > ul > li .cards-links-card-body {
