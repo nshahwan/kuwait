@@ -22,17 +22,21 @@ export default async function decorate(block) {
   }
 
   // Local preview / aem up first, then environment-resolved path.
+  // Only attempt the local shortcut on localhost; on published environments
+  // this path does not exist and would log a 404 to the console on every load.
   let fragment = null;
-  try {
-    const resp = await fetch('/content/footer.plain.html');
-    if (resp.ok) {
-      const html = await resp.text();
-      const tmp = document.createElement('div');
-      tmp.innerHTML = html;
-      fragment = tmp;
+  if (window.location.hostname.includes('localhost')) {
+    try {
+      const resp = await fetch('/content/footer.plain.html');
+      if (resp.ok) {
+        const html = await resp.text();
+        const tmp = document.createElement('div');
+        tmp.innerHTML = html;
+        fragment = tmp;
+      }
+    } catch (e) {
+      fragment = null;
     }
-  } catch (e) {
-    fragment = null;
   }
   if (!fragment) {
     fragment = await loadFragment(footerPath);
